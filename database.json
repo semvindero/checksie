@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1789060840446,
+      "fullName": "фыв",
+      "age": 12,
+      "birthCity": "фыв",
+      "phone": "12",
+      "address": "фыв",
+      "telegram": "фывф",
+      "vk": "фыв"
+    },
+    {
+      "id": 1789060251559,
+      "fullName": "Петров Ашот Магомедо-Бентоторотович",
+      "age": 67,
+      "birthCity": "Магадан брат",
+      "phone": "+9999999999",
+      "address": "Магадан",
+      "telegram": "bratbrata",
+      "vk": "@magadanbrat"
+    }
+  ]
+}
