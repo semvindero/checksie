@@ -1,0 +1,634 @@
+:root {
+    --bg-gradient: linear-gradient(180deg, #0f3d4c 0%, #155e6d 45%, #1d7888 100%);
+    --accent-color: #4ad3be;
+    --accent-hover: #36b8a4;
+    --glass-bg: rgba(7, 25, 31, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --text-main: #ffffff;
+    --text-muted: #a3c7cf;
+    --danger-color: #ff5e62;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #0f3d4c;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Навигационная шапка */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    background: transparent;
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+}
+
+.role-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.role-badge.guest {
+    background: rgba(255, 255, 255, 0.15);
+    color: #d0e7ed;
+}
+
+.role-badge.member {
+    background: rgba(74, 211, 190, 0.2);
+    color: var(--accent-color);
+}
+
+.role-badge.maga {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.role-badge.own {
+    background: rgba(255, 94, 98, 0.2);
+    color: var(--danger-color);
+    border: 1px solid rgba(255, 94, 98, 0.4);
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.8;
+    padding-bottom: 4px;
+    transition: opacity 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-btn:hover {
+    opacity: 1;
+}
+
+.nav-btn.active {
+    opacity: 1;
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Основной контейнер */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+    padding-bottom: 140px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Плавные анимации переключения вкладок */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    will-change: opacity, transform;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Главная страница (Hero) */
+.hero-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.hero-title .highlight {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+}
+
+.btn-hero {
+    background: var(--accent-color);
+    color: #07191f;
+    border: none;
+    padding: 14px 40px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-hero:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 211, 190, 0.3);
+}
+
+.tech-pills {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    padding: 4px 14px;
+    border-radius: 20px;
+    color: var(--text-muted);
+}
+
+/* Стекловидные карточки */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+}
+
+/* Формы и Инпуты */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 18px 12px 6px 12px;
+    color: #fff;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-color);
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus~label,
+.input-group input:not(:placeholder-shown)~label {
+    top: 8px;
+    transform: translateY(0);
+    font-size: 0.65rem;
+    color: var(--accent-color);
+}
+
+.btn-accent {
+    grid-column: 1 / -1;
+    background: var(--accent-color);
+    color: #07191f;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-accent:hover {
+    background: var(--accent-hover);
+}
+
+/* Таблица */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-box input {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #fff;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+th {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.person-link {
+    color: var(--accent-color);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.person-link:hover {
+    text-decoration: underline;
+}
+
+.btn-delete {
+    background: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: var(--danger-color);
+    color: #fff;
+}
+
+/* Терминал и Админка */
+.terminal-form {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.terminal-form input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    padding: 12px;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    outline: none;
+}
+
+.terminal-feedback {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.admin-actions {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.action-block {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+}
+
+.action-block h3 {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.action-block p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-danger:hover {
+    opacity: 0.85;
+}
+
+/* Векторный пейзаж */
+.mountain-landscape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mountain-landscape svg {
+    width: 100%;
+    height: 180px;
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity, visibility;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 6px;
+    gap: 10px;
+}
+
+.detail-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* ==========================================================
+   АДАПТИВНАЯ ВЕРСТКА ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (SMARTPHONES/TABLETS)
+   ========================================================== */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 16px 20px;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        gap: 16px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-btn {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
+
+    .glass-card {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .terminal-form {
+        flex-direction: column;
+    }
+
+    .terminal-form button {
+        width: 100%;
+    }
+
+    .mountain-landscape svg {
+        height: 120px;
+    }
+
+    .main-wrapper {
+        padding-bottom: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.65rem;
+    }
+
+    .btn-hero {
+        width: 100%;
+        padding: 14px 20px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+}
+
+/* Статусы посетителей */
+.status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.online {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-badge.offline {
+    background: rgba(100, 116, 139, 0.15);
+    color: #94a3b8;
+}
+
+.status-badge.banned {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-ban {
+    background: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.btn-ban:hover {
+    background: var(--danger-color);
+    color: #fff;
+}
+
+.btn-unban {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.btn-unban:hover {
+    background: var(--accent-color);
+    color: #04090c;
+}
